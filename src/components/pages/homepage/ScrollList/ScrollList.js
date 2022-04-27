@@ -1,14 +1,45 @@
 import React from "react";
+import SinglePicture from "./SinglePicture";
 
 
 function ScrollList(props) {
     return (
-        <div className="bg-black">
-            <div className="min-h-[6rem] bg-indigo-700">
-                SCROLLLIST
-            </div>
+        <div className="list-container">
+            <ul className="justify-items-center 
+            columns-2 sm:columns-3 md:columns-4 lg:columns-5
+            ">
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
 
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
 
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+
+                <SinglePicture />
+                <SinglePicture uri={"https://cdn.pixabay.com/photo/2015/12/06/09/19/montmartre-1079246_960_720.jpg"} />
+
+            </ul>
         </div>
     )
 }

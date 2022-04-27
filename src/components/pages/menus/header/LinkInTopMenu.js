@@ -2,14 +2,16 @@ import React from "react";
 
 function LinkInTopMenu(props) {
     return (
-        <a href={props.uri}>
-            <div className={`
-            tracking-widest text-white 
+
+        <a href={props.uri} className={`
+            tracking-widest text-white px-3
             ${props.selected ? "font-bold" : "font-normal"}            
             `} >
-                {props.text}
-            </div>
+
+            {props.text}
+
         </a>
+
     )
 }
 

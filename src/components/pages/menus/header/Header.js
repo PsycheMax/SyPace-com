@@ -10,9 +10,9 @@ function Header(props) {
             <div className="sm:border-b-2 md:border-b-4 sm:border-slate-50 my-auto py-4">
                 <TopMenu />
             </div>
-            <div className="sm:border-b-4 sm:border-slate-50">
-                <div className="mx-auto max-w-[20rem] my-auto justify-items-center">
-                    <div className="columns-2 py-2 ">
+            <div className="sm:border-b-2 md:border-b-4 sm:border-slate-50">
+                <div className="mx-auto max-w-[20rem] my-auto ">
+                    <div className="py-2 mx-auto justify-items-center justify-self-center ">
                         <LinkInTopMenu selected={true} text="Portfolio" uri={"http://sypace.com"} />
                         <LinkInTopMenu text="Instacazz" uri={"https://instagram.com/syria.pace"} />
                     </div>
