@@ -4,7 +4,7 @@ import ScrollList from "./ScrollList/ScrollList";
 function ContentContainer(props) {
     return (
 
-        <div className="px-3">
+        <div className="">
             ContentContainer
             <ScrollList />
         </div>

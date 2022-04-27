@@ -1,14 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function SinglePicture(props) {
     return (
 
         <li >
-            <img src={props.uri} alt={props.alt} className={`pic mb-3
+            <Link to={`/pic/${props._id}`}>
+                <img src={props.uri} alt={props.alt} className={`pic mb-3
             hover:brightness-125 transition-all duration-150
             `}
-            // style={{ maxWidth: props.maxWidth, maxHeight: props.maxHeight }}
-            />
+                />
+            </Link>
         </li >
     )
 }
@@ -19,7 +21,8 @@ SinglePicture.defaultProps = {
     alt: "Default Picture - montmammeta",
     maxWidth: "145px",
     maxHeight: "500px",
-    portrait: true
+    portrait: true,
+    _id: "whatever"
 }
 
 export default SinglePicture;
