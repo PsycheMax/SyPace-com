@@ -1,15 +1,14 @@
 import React from "react";
 import Header from "../menus/Header";
 
-function HomePage() {
+function HomePage(props) {
     return (
         <div className="bg-black">
-            <Header />
-            <div className="main-container container">
-                <h1 className="text-3xl font-bold underline bg-indigo-500 text-white">
-                    MAIN CONTAINER CONTAINING PICTURES
-                </h1>
+            <div className="min-h-[6rem] bg-indigo-700">
+                <Header />
             </div>
+
+
         </div>
     )
 }
