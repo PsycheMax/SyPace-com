@@ -5,7 +5,7 @@ function ContentContainer(props) {
     return (
 
         <div className="">
-            ContentContainer
+
             <ScrollList />
         </div>
     )

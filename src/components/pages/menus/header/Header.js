@@ -14,7 +14,7 @@ function Header(props) {
                 <div className="mx-auto max-w-[20rem] my-auto ">
                     <div className="py-2 mx-auto justify-items-center justify-self-center ">
                         <LinkInTopMenu selected={true} text="Portfolio" to={"/"} />
-                        <LinkInTopMenu external={true} text="Instacazz" to={"https://instagram.com/syria.pace"} />
+                        <LinkInTopMenu external={true} text="Instacazz" to={"https://instagram.com/syria_pace"} />
                     </div>
                 </div>
             </div>

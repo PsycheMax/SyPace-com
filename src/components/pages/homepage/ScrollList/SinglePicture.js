@@ -23,6 +23,7 @@ function SinglePicture(props) {
                 <img src={uri} alt={alt} className={`pic 
             hover:brightness-150 transition-all duration-150
             `}
+                    onLoad={props.onLoadFunction}
                     key={_id} />
             </Link>
         </li >
@@ -35,7 +36,8 @@ SinglePicture.defaultProps = {
         name: "Default Picture - Montmartre",
         alt: "Default Picture - montmammeta",
         _id: "whatever"
-    }
+    },
+    onLoadFunction: () => { console.log("Loaded") }
 }
 
 export default SinglePicture;

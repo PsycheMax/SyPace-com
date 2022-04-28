@@ -18,12 +18,15 @@ export const PicturesMetadataContext = React.createContext({
     },
     setPicture: (_id) => { },
     getNextPicture: () => { },
-    getPreviousPicture: () => { }
+    getPreviousPicture: () => { },
+    werePicturesLoaded: false,
+    setPicturesLoaded: () => { }
 });
 
 function PictureMetadataContextProvider(props) {
 
     const [selectedPicture, setSelectedPicture] = useState();
+    const [werePicturesLoaded, setWerePicturesLoaded] = useState(false);
 
     function setPicture(_id) {
         console.log("Called")
@@ -76,8 +79,12 @@ function PictureMetadataContextProvider(props) {
         }
     }
 
+    function setPicturesLoaded() {
+        setWerePicturesLoaded(true);
+    }
+
     return (
-        <PicturesMetadataContext.Provider value={{ JSONList, selectedPicture, setPicture, getNextPicture, getPreviousPicture }} >
+        <PicturesMetadataContext.Provider value={{ JSONList, selectedPicture, setPicture, getNextPicture, getPreviousPicture, werePicturesLoaded, setPicturesLoaded }} >
             {props.children}
         </PicturesMetadataContext.Provider>
     )
