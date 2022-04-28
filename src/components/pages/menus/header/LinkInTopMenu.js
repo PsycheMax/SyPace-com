@@ -1,23 +1,36 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function LinkInTopMenu(props) {
     return (
 
-        <a href={props.uri} className={`
+        props.external ?
+            <a href={props.to} className={`
             tracking-widest text-white px-3
             ${props.selected ? "font-bold" : "font-normal"}            
             `} >
 
-            {props.text}
+                {props.text}
 
-        </a>
+            </a>
+            :
+            <Link to={props.to} className={`
+            tracking-widest text-white px-3
+            ${props.selected ? "font-bold" : "font-normal"}            
+            `} >
+
+                {props.text}
+
+            </Link>
+
 
     )
 }
 
 LinkInTopMenu.defaultProps = {
     text: "LinkTitle",
-    uri: "http://urigoeshere/",
+    to: "/",
+    external: false,
     selected: false
 }
 

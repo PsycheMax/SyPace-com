@@ -1,0 +1,11 @@
+.image-show-loading-cursor{
+    cursor: url('/public/assets/camera.png'), auto;
+}
+
+.image-show-left-cursor{
+    cursor: url('/public/assets/left-arrow.png'),auto;
+}
+
+.image-show-right-cursor{
+    cursor: url('/public/assets/right-arrow.png'),auto;
+}

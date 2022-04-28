@@ -1,28 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { PicturesMetadataContext } from "../../../context/PicturesMetadataContextProvider";
 
 function SinglePicture(props) {
+
+    const setPicture = useContext(PicturesMetadataContext).setPicture;
+
+    const { uri, title, alt, _id } = props.pictureMetaData;
+
+    function handleTouch() {
+        setPicture(_id);
+    }
+
     return (
 
-        <li >
-            <Link to={`/pic/${props._id}`}>
-                <img src={props.uri} alt={props.alt} className={`pic mb-3
-            hover:brightness-125 transition-all duration-150
+        <li className="my-3"
+            key={_id}
+        // onTouchStart={handleTouch}
+        >
+
+            <Link to={`/pic/${_id}`}>
+                <img src={uri} alt={alt} className={`pic 
+            hover:brightness-150 transition-all duration-150
             `}
-                />
+                    key={_id} />
             </Link>
         </li >
     )
 }
 
 SinglePicture.defaultProps = {
-    uri: "https://cdn.pixabay.com/photo/2022/04/22/20/13/montmartre-7150549_960_720.jpg",
-    name: "Default Picture - Montmartre",
-    alt: "Default Picture - montmammeta",
-    maxWidth: "145px",
-    maxHeight: "500px",
-    portrait: true,
-    _id: "whatever"
+    pictureMetaData: {
+        uri: "https://cdn.pixabay.com/photo/2022/04/22/20/13/montmartre-7150549_960_720.jpg",
+        name: "Default Picture - Montmartre",
+        alt: "Default Picture - montmammeta",
+        _id: "whatever"
+    }
 }
 
 export default SinglePicture;

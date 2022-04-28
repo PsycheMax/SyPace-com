@@ -13,8 +13,8 @@ function Header(props) {
             <div className="sm:border-b-2 md:border-b-4 sm:border-slate-50">
                 <div className="mx-auto max-w-[20rem] my-auto ">
                     <div className="py-2 mx-auto justify-items-center justify-self-center ">
-                        <LinkInTopMenu selected={true} text="Portfolio" uri={"http://sypace.com"} />
-                        <LinkInTopMenu text="Instacazz" uri={"https://instagram.com/syria.pace"} />
+                        <LinkInTopMenu selected={true} text="Portfolio" to={"/"} />
+                        <LinkInTopMenu external={true} text="Instacazz" to={"https://instagram.com/syria.pace"} />
                     </div>
                 </div>
             </div>
