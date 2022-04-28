@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { PicturesMetadataContext } from "../../context/PicturesMetadataContextProvider";
+import LoadingSpinner from "../../loadingSpinner/LoadingSpinner";
 
 import "./PicturePage.css";
 
@@ -87,33 +88,28 @@ function PicturePage(props) {
 
     return (
         selectedPicture ?
-            <div className="text-white max-h-[80vh] h-[80vh]
-        pt-8
-        flex flex-col items-center">
+            <div className={`text-white min-h-[100%] min-w-[100%] noselect
+        pt-8  max-h-[100%]
+        flex flex-col items-center 
+        ${showLeftCursor ? "image-show-left-cursor" : ""}
+        ${showRightCursor ? "image-show-right-cursor" : ""}
+        ${showLoadingCursor ? "image-show-loading-cursor" : ""}
+        `}
+                onMouseDown={handleClick}
+                onLoad={handleLoad}
+                onMouseMove={handleMouseMove}
+            >
 
                 <img src={uriFromParam} alt={selectedPicture.alt}
-                    className={`w-fit h-fit aspect-auto grow-0 
-                    ${showLeftCursor ? "image-show-left-cursor" : ""}
-                    ${showRightCursor ? "image-show-right-cursor" : ""}
-                    ${showLoadingCursor ? "image-show-loading-cursor" : ""}
-                    
-                    `}
-                    onMouseDown={handleClick}
-                    onLoad={handleLoad}
-                    onMouseMove={handleMouseMove}
+                    className={`w-auto h-auto max-w-[100vw] max-h-[77vh]`}
                 />
                 <div className=" font-white text-white grow-0">
                     {selectedPicture.title}
                     {console.log(selectedPicture)}
                 </div>
-                {/* <div onTouchEnd={handleLeftSideClick} className="font-white text-white grow-0">
-                    LEFT
-                </div>
-                <div onTouchEnd={handleRightSideClick} className="font-white text-white grow-0">
-                    RIGHT
-                </div> */}
+
             </div> :
-            <></>
+            <LoadingSpinner />
     )
 }
 

@@ -31,8 +31,9 @@ function ScrollList(props) {
 
     return (
         <>
-            <div className={`list-container px-4 zindex py-6
-            ${picsLoaded === ListOfPicsJSON.length ? "" : "absolute z-0"}
+            {picsLoaded === ListOfPicsJSON.length ? <LoadingSpinner visible={false} /> : <LoadingSpinner />}
+            <div className={`list-container px-4  py-6
+            ${picsLoaded === ListOfPicsJSON.length ? "overflow-auto" : "hidden-at-start"}
             `}>
                 <ul className="justify-items-center 
             columns-2 sm:columns-3 md:columns-4 lg:columns-5
@@ -40,7 +41,6 @@ function ScrollList(props) {
                     {CreateListOfSinglePictures()}
                 </ul>
             </div>
-            {picsLoaded === ListOfPicsJSON.length ? null : <LoadingSpinner />}
         </>
     )
 }

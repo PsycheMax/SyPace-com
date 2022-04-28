@@ -1,4 +1,5 @@
-.zindex{
+.hidden-at-start{
     z-index: 1;
-    /* opacity: 1; */
+    overflow: hidden;
+    opacity: 0;
 }
