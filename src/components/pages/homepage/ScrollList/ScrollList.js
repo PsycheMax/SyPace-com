@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { PicturesMetadataContext } from "../../../context/PicturesMetadataContextProvider";
 import LoadingSpinner from "../../../loadingSpinner/LoadingSpinner";
 
@@ -12,33 +12,20 @@ function ScrollList(props) {
     const [picsLoaded, setPicsLoaded] = useState(0);
 
     function onLoadFunction() {
-        console.log("LOADED")
         setPicsLoaded((prevState) => {
             return prevState + 1;
-
         })
-        console.log(picsLoaded)
     }
 
     function CreateListOfSinglePictures() {
         let toReturn = [];
         let newPicsLoaded = [];
-
         for (let index = 0; index < ListOfPicsJSON.length; index++) {
             const pic = ListOfPicsJSON[index];
-            let toAdd = <SinglePicture key={pic._id} pictureMetaData={pic} onLoadFunction={onLoadFunction} />;
+            let toAdd = <SinglePicture key={pic._id} pictureMetaData={pic} onLoadFunction={onLoadFunction} first={index === 0 ? true : false} />;
             toReturn.push(toAdd);
             newPicsLoaded.push(false);
-
         }
-
-        // The following lines are a shuffler algo
-        // for (var i = toReturn.length - 1; i > 0; i--) {
-        //     var j = Math.floor(Math.random() * (i + 1));
-        //     var temp = toReturn[i];
-        //     toReturn[i] = toReturn[j];
-        //     toReturn[j] = temp;
-        // }
         return toReturn;
     }
 
@@ -59,3 +46,12 @@ function ScrollList(props) {
 }
 
 export default ScrollList;
+
+
+        // The following function is a shuffler algo
+        // for (var i = toReturn.length - 1; i > 0; i--) {
+        //     var j = Math.floor(Math.random() * (i + 1));
+        //     var temp = toReturn[i];
+        //     toReturn[i] = toReturn[j];
+        //     toReturn[j] = temp;
+        // }

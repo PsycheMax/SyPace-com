@@ -1,22 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { PicturesMetadataContext } from "../../../context/PicturesMetadataContextProvider";
 
 function SinglePicture(props) {
 
-    const setPicture = useContext(PicturesMetadataContext).setPicture;
-
-    const { uri, title, alt, _id } = props.pictureMetaData;
-
-    function handleTouch() {
-        setPicture(_id);
-    }
+    const { uri, alt, _id } = props.pictureMetaData;
 
     return (
 
-        <li className="my-3"
+        <li className={`${props.first ? "mb-3" : "my-3"}`}
             key={_id}
-        // onTouchStart={handleTouch}
         >
 
             <Link to={`/pic/${_id}`}>
