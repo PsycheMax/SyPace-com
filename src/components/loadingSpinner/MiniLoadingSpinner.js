@@ -9,7 +9,7 @@ function MiniLoadingSpinner(props) {
         transition-all duration-100 
             ${props.visible ? "opacity-100" : "opacity-0 h-0 w-0 z-0 "} 
         `}>
-            <div class="lds-dual-ring"></div>
+            <div className="lds-dual-ring"></div>
         </div>
 
     )

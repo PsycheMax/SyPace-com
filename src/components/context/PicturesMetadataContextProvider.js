@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import JSONList from '../pages/homepage/ScrollList/ListOfPics.json';
+import JSONList from '../pages/ScrollList/ListOfPics.json';
 
 export const PicturesMetadataContext = React.createContext({
     JSONList: [{
@@ -15,7 +15,9 @@ export const PicturesMetadataContext = React.createContext({
         title: "",
         alt: "",
         _id: "",
-        collection: ""
+        collection: "",
+        width: "",
+        height: ""
     },
     collatedPictures: [{
         JSONListArrayPosition: "",
@@ -23,7 +25,9 @@ export const PicturesMetadataContext = React.createContext({
         title: "",
         alt: "",
         _id: "",
-        collection: ""
+        collection: "",
+        width: "",
+        height: ""
     }],
     selectedCollectionName: "",
     setCollection: (collectionName) => { },

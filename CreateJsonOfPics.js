@@ -3,6 +3,7 @@ const { readdir } = require('fs').promises;
 const fs = require('fs');
 
 const { ExifImage } = require('exif');
+const { imageSize } = require('image-size');
 
 let outputFolder = join(__dirname, "src/components/pages/homepage/ScrollList/");
 let outputFileName = "ListOfPics";
@@ -46,7 +47,9 @@ async function* getFiles(dir) {
                         "title": `${exifData.image.ImageDescription}`,
                         "alt": `${exifData.image.ImageDescription} by ${exifData.image.Artist}`,
                         "_id": `${filename}`,
-                        "collection": `${folderName}`
+                        "collection": `${folderName}`,
+                        "width": imageSize(foundFileCompletePath).width,
+                        "height": imageSize(foundFileCompletePath).height
                     };
                     jsonToWrite.push(toAdd);
                     fs.writeFile(jsonOutput, JSON.stringify(jsonToWrite), "utf-8", (err) => { if (err) { console.log(err) } });

@@ -11,7 +11,7 @@ import PicturePage from './components/pages/picturePage/PicturePage';
 import AboutPage from './components/pages/about/AboutPage';
 import NotFound404 from './components/pages/404';
 import HomePage from './components/pages/homepage/Homepage';
-import ScrollList from './components/pages/homepage/ScrollList/ScrollList';
+import ScrollList from './components/pages/ScrollList/ScrollList';
 import CollectionPage from './components/pages/collectionPage/CollectionPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

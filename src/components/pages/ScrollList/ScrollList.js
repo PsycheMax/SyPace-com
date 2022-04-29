@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { PicturesMetadataContext } from "../../../context/PicturesMetadataContextProvider";
+import { PicturesMetadataContext } from "../../context/PicturesMetadataContextProvider";
 
 import "./ScrollList.css";
 import SinglePicture from "./SinglePicture";
@@ -12,7 +12,6 @@ function ScrollList(props) {
         let toReturn = [];
         for (let index = 0; index < ListOfPicsJSON.length; index++) {
             const pic = ListOfPicsJSON[index];
-            console.log(pic.uri)
             let toAdd = <SinglePicture key={pic._id} pictureMetaData={pic} first={index === 0 ? true : false} goToPicture={false} />;
             toReturn.push(toAdd);
         }

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import convertNameToReadable from "../../../utils/convertNameToReadable";
 import { PicturesMetadataContext } from "../../context/PicturesMetadataContextProvider";
 import LoadingSpinner from "../../loadingSpinner/LoadingSpinner";
-import SinglePicture from "../homepage/ScrollList/SinglePicture";
+import SinglePicture from "../ScrollList/SinglePicture";
 
 function CollectionPage(props) {
     let params = useParams()
@@ -59,12 +59,12 @@ function CollectionPage(props) {
     return (
         true ?
             <div className={`font-white min-w-full`}>
-                <div className="py-4 text-white text-3xl
+                <div className="py-4 mb-4 text-white text-3xl
                 sm:border-b-2 md:border-b-4 sm:border-slate-50">
-                    {convertNameToReadable(selectedCollectionName)} Project
+                    {convertNameToReadable(selectedCollectionName)}
                 </div>
 
-                COLLECTION PAGE
+
                 <ul className="justify-items-center mx-4
             columns-2 sm:columns-3 md:columns-4 lg:columns-5
             ">
