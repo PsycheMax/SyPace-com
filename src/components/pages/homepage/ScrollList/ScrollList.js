@@ -30,9 +30,9 @@ function ScrollList(props) {
 
     return (
         <>
-            {picsLoaded === ListOfPicsJSON.length ? <LoadingSpinner visible={false} /> : <LoadingSpinner />}
+            {/* {picsLoaded === ListOfPicsJSON.length ? <LoadingSpinner visible={false} /> : <LoadingSpinner />} */}
             <div className={`list-container px-4  py-6
-            ${picsLoaded === ListOfPicsJSON.length ? "overflow-auto" : "hidden-at-start"}
+           
             `}>
                 <ul className="justify-items-center 
             columns-2 sm:columns-3 md:columns-4 lg:columns-5
