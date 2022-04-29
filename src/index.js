@@ -20,6 +20,7 @@ root.render(
       <Route path="/" element={<HomePage />}>
         <Route path="" element={<ScrollList />} />
         <Route path="pic/:picID" element={<PicturePage />} />
+        <Route path="pic/:collectionID/:picID" element={<PicturePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="*" element={<NotFound404 />} />
       </Route>

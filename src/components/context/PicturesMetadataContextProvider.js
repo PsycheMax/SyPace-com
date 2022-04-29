@@ -14,7 +14,8 @@ export const PicturesMetadataContext = React.createContext({
         uri: "",
         title: "",
         alt: "",
-        _id: ""
+        _id: "",
+        collection: ""
     },
     setPicture: (_id) => { },
     getNextPicture: () => { },

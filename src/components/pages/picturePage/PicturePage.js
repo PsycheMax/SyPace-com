@@ -20,7 +20,7 @@ function PicturePage(props) {
     const [showRightCursor, setShowRightCursor] = useState(false)
 
     const { selectedPicture, setPicture, getNextPicture, getPreviousPicture } = useContext(PicturesMetadataContext);
-    let uriFromParam = `/assets/pictures/${params.picID}`;
+    let uriFromParam = `/assets/pictures/${params.collectionID}/${params.picID}`;
 
     // If the picture is not the "selected picture" in our state manager, then set it as a selected picture
     useEffect(() => {
@@ -49,13 +49,13 @@ function PicturePage(props) {
     function handleRightSideClick() {
         setShowLoadingCursor(true);
         let targetPicData = getNextPicture();
-        let newUri = `/pic/${targetPicData._id}`;
+        let newUri = `/pic/${targetPicData.collection}/${targetPicData._id}`;
         navigate(newUri)
     }
     function handleLeftSideClick() {
         setShowLoadingCursor(true);
         let targetPicData = getPreviousPicture();
-        let newUri = `/pic/${targetPicData._id}`;
+        let newUri = `/pic/${targetPicData.collection}/${targetPicData._id}`;
         navigate(newUri)
     }
 
@@ -104,8 +104,9 @@ function PicturePage(props) {
                     className={`w-auto h-auto max-w-[100vw] max-h-[77vh]`}
                 />
                 <div className=" font-white text-white grow-0">
+                    {/* {selectedPicture.collection} */}
                     {selectedPicture.title}
-                    {console.log(selectedPicture)}
+
                 </div>
 
             </div> :
