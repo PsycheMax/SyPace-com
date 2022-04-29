@@ -1,50 +1,63 @@
+const { resolve, join } = require('path');
+const { readdir } = require('fs').promises;
 const fs = require('fs');
-const path = require('path');
 
 const { ExifImage } = require('exif');
 
-let outputFolder = path.join(__dirname, "src/components/pages/homepage/ScrollList/");
-let outputFile = path.join(outputFolder, "ListOfPics.json");
+let outputFolder = join(__dirname, "src/components/pages/homepage/ScrollList/");
+let outputFileName = "ListOfPics";
+let outputFileExtension = ".json";
+let jsonOutput = join(outputFolder, outputFileName + outputFileExtension);
 
-let folderOfPicsPath = path.join(__dirname, "public/assets/pictures");
-console.log(folderOfPicsPath)
+let publicAssetsPicturesFolder = join(__dirname, "public", "assets", "pictures");
+console.log("The folder that will be scanned is the default: './public/assets/pictures'");
+console.log(publicAssetsPicturesFolder)
 
 let jsonToWrite = [];
 
-const picturesFolder = fs.readdir(folderOfPicsPath, (err, files) => {
-    if (err) {
-        console.log(err);
+// https://stackoverflow.com/questions/2727167/how-do-you-get-a-list-of-the-names-of-all-files-present-in-a-directory-in-node-j
+async function* getFiles(dir) {
+    const dirents = await readdir(dir, { withFileTypes: true });
+    for (const dirent of dirents) {
+        const res = resolve(dir, dirent.name);
+        if (dirent.isDirectory()) {
+            yield* getFiles(res);
+        } else {
+            yield res;
+        }
     }
-    files.forEach(foundFile => {
+}
 
-        let fileWithLocation = path.join(folderOfPicsPath, foundFile);
+; (async () => {
+    for await (const foundFileCompletePath of getFiles(publicAssetsPicturesFolder)) {
+
+        const folderSeparator = "/";
+        let indexOfFilenameSeparator = foundFileCompletePath.lastIndexOf(folderSeparator);
+        const filename = foundFileCompletePath.substring(indexOfFilenameSeparator + 1, foundFileCompletePath.length);
+        let indexOfFolderSeparator = foundFileCompletePath.lastIndexOf(folderSeparator, indexOfFilenameSeparator - 1);
+        const folderName = foundFileCompletePath.substring(indexOfFolderSeparator + 1, indexOfFilenameSeparator);
         try {
-            new ExifImage(fileWithLocation, function (error, exifData) {
+            new ExifImage(foundFileCompletePath, function (error, exifData) {
                 if (error) {
                     console.log(error);
                 } else {
-                    console.log("Found!");
                     let toAdd = {
-                        "uri": `assets/pictures/${foundFile}`,
+                        "uri": `assets/pictures/${folderName}/${filename}`,
                         "title": `${exifData.image.ImageDescription}`,
                         "alt": `${exifData.image.ImageDescription} by ${exifData.image.Artist}`,
-                        "_id": foundFile,
-                        "width": exifData.image.ImageWidth,
-                        "height": exifData.image.ImageHeight,
-                        "camera": exifData.image.Model
+                        "_id": `${filename}`,
+                        "collection": `${folderName}`
                     };
                     jsonToWrite.push(toAdd);
-                    console.log(jsonToWrite);
-                    fs.writeFile(outputFile, JSON.stringify(jsonToWrite), "utf-8", (err) => { console.log(err) });
-                    return outputFile;
-
+                    fs.writeFile(jsonOutput, JSON.stringify(jsonToWrite), "utf-8", (err) => { if (err) { console.log(err) } });
                 }
+
             })
         } catch (error) {
-            console.log("Error: " + error.message);
+            console.log(error)
         }
-    });
 
-});
-
-console.log(picturesFolder);
+    }
+})()
+console.log("The scan is complete - a JSON file has been created at this path:");
+console.log(jsonOutput);
