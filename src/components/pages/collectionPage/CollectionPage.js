@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import convertNameToReadable from "../../../utils/convertNameToReadable";
 import { PicturesMetadataContext } from "../../context/PicturesMetadataContextProvider";
@@ -7,8 +6,7 @@ import LoadingSpinner from "../../loadingSpinner/LoadingSpinner";
 import SinglePicture from "../homepage/ScrollList/SinglePicture";
 
 function CollectionPage(props) {
-    let params = useParams();
-    let navigate = useNavigate();
+    let params = useParams()
 
     let { selectedCollectionName, collatedPictures, getCollectionPictures, setCollection } = useContext(PicturesMetadataContext);
 

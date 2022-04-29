@@ -21,14 +21,16 @@ function PicturePage(props) {
     const [showLeftCursor, setShowLeftCursor] = useState(false);
     const [showRightCursor, setShowRightCursor] = useState(false)
 
-    const { selectedPicture, setPicture, getNextPicture, getPreviousPicture, selectedCollectionName } = useContext(PicturesMetadataContext);
+    const { selectedPicture, setPicture, getNextPicture, getPreviousPicture, selectedCollectionName, setCollection } = useContext(PicturesMetadataContext);
     let uriFromParam = `/assets/pictures/${params.collectionID}/${params.picID}`;
 
     // If the picture is not the "selected picture" in our state manager, then set it as a selected picture
     useEffect(() => {
         if (!selectedPicture || selectedPicture._id !== params.picID) {
             setPicture(params.picID);
-            console.log(selectedPicture);
+        }
+        if (!selectedCollectionName || selectedCollectionName !== params.collectionID) {
+            setCollection(params.collectionID);
         }
     })
 
@@ -109,6 +111,7 @@ function PicturePage(props) {
 
                 <img src={uriFromParam} alt={selectedPicture.alt}
                     className={`w-auto h-auto max-w-[100vw] max-h-[77vh]`}
+                    onError={() => { navigate("/") }}
                 />
                 <div className=" font-white text-white grow-0">
                     {/* {selectedPicture.collection} */}

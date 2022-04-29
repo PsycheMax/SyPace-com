@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { PicturesMetadataContext } from "../../../context/PicturesMetadataContextProvider";
-import LoadingSpinner from "../../../loadingSpinner/LoadingSpinner";
 
 import "./ScrollList.css";
 import SinglePicture from "./SinglePicture";
@@ -9,20 +8,12 @@ function ScrollList(props) {
 
     const { JSONList: ListOfPicsJSON } = useContext(PicturesMetadataContext);
 
-    const [picsLoaded, setPicsLoaded] = useState(0);
-
-    function onLoadFunction() {
-        setPicsLoaded((prevState) => {
-            return prevState + 1;
-        })
-    }
-
     function CreateListOfSinglePictures() {
         let toReturn = [];
         for (let index = 0; index < ListOfPicsJSON.length; index++) {
             const pic = ListOfPicsJSON[index];
             console.log(pic.uri)
-            let toAdd = <SinglePicture key={pic._id} pictureMetaData={pic} onLoadFunction={onLoadFunction} first={index === 0 ? true : false} goToPicture={false} />;
+            let toAdd = <SinglePicture key={pic._id} pictureMetaData={pic} first={index === 0 ? true : false} goToPicture={false} />;
             toReturn.push(toAdd);
         }
         return toReturn;
@@ -30,7 +21,6 @@ function ScrollList(props) {
 
     return (
         <>
-            {/* {picsLoaded === ListOfPicsJSON.length ? <LoadingSpinner visible={false} /> : <LoadingSpinner />} */}
             <div className={`list-container px-4  py-6
            
             `}>
