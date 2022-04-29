@@ -12,8 +12,7 @@ function Header(props) {
         if (location && location !== locationPath.toString()) {
             setLocation(locationPath.toString())
         }
-    })
-
+    }, [location, locationPath])
 
     return (
         <div className=" 

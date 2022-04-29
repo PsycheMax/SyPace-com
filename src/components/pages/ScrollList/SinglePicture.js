@@ -1,9 +1,6 @@
-import React, { useState, Suspense, lazy } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import MiniLoadingSpinner from "../../loadingSpinner/MiniLoadingSpinner";
-// import PictureContent from "./PictureContent";
-
-const PictureContent = lazy(() => { return import('./PictureContent') });
 
 function SinglePicture(props) {
 
@@ -28,30 +25,34 @@ function SinglePicture(props) {
         <li className={`${props.first ? "mb-3" : "my-3"}`}
             key={_id}
         >
+            <div className={`placeholder-shape  
+            ${props.first ? "mb-3" : "my-3"}
+            ${showPicture ? "hidden" : "block"}
+            border-2 rounded-md my-2 
+    ${orientation === "square" ? "w-[12rem] min-w-[12rem] h-[12rem]" : ""}
+    ${orientation === "portrait" ? "w-[8rem] min-w-[8rem] h-[12rem]" : ""}
+    ${orientation === "square" ? "w-[12rem] min-w-[12rem] h-[8rem]" : ""}
+    `}
 
-            <Suspense fallback={<div className={`h-[100%] w-[100%] 
-                            ${props.first ? "mb-3" : "my-3"}
-                            ${showPicture ? "hidden" : "block"}
-                            border-2 rounded-md my-2 grid place-items-center                           
-                            `}>
-                <MiniLoadingSpinner />
-            </div>}>
+
+            >
                 <div className={`h-[100%] w-[100%] 
-                            ${props.first ? "mb-3" : "my-3"}
-                            ${showPicture ? "hidden" : "block"}
-                            border-0 rounded-md my-2 grid place-items-center                           
+                            grid place-items-center                           
                             `}>
                     <MiniLoadingSpinner />
                 </div>
-                <PictureContent to={props.goToPicture ? `/pic/${collection}/${_id}` : `/pic/${collection}`}
-                    pictureMetaData={props.pictureMetaData} key={props.pictureMetaData._id}
+            </div>
+            <Link to={props.goToPicture ? `/pic/${collection}/${_id}` : `/pic/${collection}`}>
+                <img src={uri} alt={alt}
                     onLoad={() => { setShowPicture(true) }}
-                    className={`pic 
-            hover:brightness-150 transition-all duration-150
-            ${showPicture ? "block" : "hidden"}
-            `} />
-            </Suspense>
+                    key={_id}
 
+                    className={`pic 
+                    hover:brightness-150 transition-all duration-150
+                    ${showPicture ? "block" : "hidden"}
+            `} />
+
+            </Link>
         </li >
     )
 }

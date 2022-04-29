@@ -5,7 +5,7 @@ const fs = require('fs');
 const { ExifImage } = require('exif');
 const { imageSize } = require('image-size');
 
-let outputFolder = join(__dirname, "src/components/pages/homepage/ScrollList/");
+let outputFolder = join(__dirname, "src/components/pages/ScrollList/");
 let outputFileName = "ListOfPics";
 let outputFileExtension = ".json";
 let jsonOutput = join(outputFolder, outputFileName + outputFileExtension);

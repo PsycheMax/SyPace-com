@@ -74,7 +74,6 @@ function PicturePage(props) {
     }
 
     function handleLoad(event) {
-        console.log(event);
         setShowLoadingCursor(false);
     }
 
