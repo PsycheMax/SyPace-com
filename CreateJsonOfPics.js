@@ -42,7 +42,7 @@ async function* getFiles(dir) {
                     console.log(error);
                 } else {
                     let toAdd = {
-                        "uri": `assets/pictures/${folderName}/${filename}`,
+                        "uri": `/assets/pictures/${folderName}/${filename}`,
                         "title": `${exifData.image.ImageDescription}`,
                         "alt": `${exifData.image.ImageDescription} by ${exifData.image.Artist}`,
                         "_id": `${filename}`,

@@ -19,12 +19,11 @@ function ScrollList(props) {
 
     function CreateListOfSinglePictures() {
         let toReturn = [];
-        let newPicsLoaded = [];
         for (let index = 0; index < ListOfPicsJSON.length; index++) {
             const pic = ListOfPicsJSON[index];
-            let toAdd = <SinglePicture key={pic._id} pictureMetaData={pic} onLoadFunction={onLoadFunction} first={index === 0 ? true : false} />;
+            console.log(pic.uri)
+            let toAdd = <SinglePicture key={pic._id} pictureMetaData={pic} onLoadFunction={onLoadFunction} first={index === 0 ? true : false} goToPicture={false} />;
             toReturn.push(toAdd);
-            newPicsLoaded.push(false);
         }
         return toReturn;
     }

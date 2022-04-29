@@ -5,13 +5,15 @@ function SinglePicture(props) {
 
     const { uri, alt, _id, collection } = props.pictureMetaData;
 
+    console.log(uri);
     return (
 
         <li className={`${props.first ? "mb-3" : "my-3"}`}
             key={_id}
         >
 
-            <Link to={`/pic/${collection}/${_id}`}>
+
+            <Link to={props.goToPicture ? `/pic/${collection}/${_id}` : `/pic/${collection}`}>
                 <img src={uri} alt={alt} className={`pic 
             hover:brightness-150 transition-all duration-150
             `}
@@ -30,7 +32,8 @@ SinglePicture.defaultProps = {
         _id: "whatever",
         collection: "collection"
     },
-    onLoadFunction: () => { console.log("Loaded") }
+    onLoadFunction: () => { console.log("Loaded") },
+    goToPicture: false
 }
 
 export default SinglePicture;

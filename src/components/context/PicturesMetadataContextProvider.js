@@ -17,6 +17,18 @@ export const PicturesMetadataContext = React.createContext({
         _id: "",
         collection: ""
     },
+    collatedPictures: [{
+        JSONListArrayPosition: "",
+        uri: "",
+        title: "",
+        alt: "",
+        _id: "",
+        collection: ""
+    }],
+    selectedCollectionName: "",
+    setCollection: (collectionName) => { },
+    getCollectionPictures: () => { },
+
     setPicture: (_id) => { },
     getNextPicture: () => { },
     getPreviousPicture: () => { },
@@ -27,20 +39,18 @@ export const PicturesMetadataContext = React.createContext({
 function PictureMetadataContextProvider(props) {
 
     const [selectedPicture, setSelectedPicture] = useState();
+    const [selectedCollectionName, setSelectedCollectionName] = useState();
+    const [collatedPictures, setCollatedPictures] = useState();
     const [werePicturesLoaded, setWerePicturesLoaded] = useState(false);
 
     function setPicture(_id) {
-        console.log("Called")
-        console.log(_id)
         if (_id) {
             let picInArray = {};
             JSONList.forEach(pic => {
                 if (pic._id === _id) {
-                    console.log("found");
                     picInArray = pic;
                 }
             });
-            console.log(JSONList.indexOf(picInArray));
             setSelectedPicture({
                 ...picInArray,
                 JSONListArrayPosition: JSONList.indexOf(picInArray)
@@ -80,12 +90,38 @@ function PictureMetadataContextProvider(props) {
         }
     }
 
+    function setCollection(collectionName) {
+        if (collectionName) {
+            setSelectedCollectionName(collectionName);
+        } else {
+            setSelectedCollectionName();
+        }
+    }
+
+    function getCollectionPictures() {
+        console.log("Get collection pictures");
+        if (selectedCollectionName && selectedCollectionName.length > 0) {
+            let newCollectionOfPictures = [];
+            for (let index = 0; index < JSONList.length; index++) {
+                const pic = JSONList[index];
+                if (pic.collection === selectedCollectionName) {
+                    newCollectionOfPictures.push(pic);
+                }
+            }
+            setCollatedPictures(newCollectionOfPictures);
+            console.log(newCollectionOfPictures);
+        }
+    }
+
     function setPicturesLoaded() {
         setWerePicturesLoaded(true);
     }
 
     return (
-        <PicturesMetadataContext.Provider value={{ JSONList, selectedPicture, setPicture, getNextPicture, getPreviousPicture, werePicturesLoaded, setPicturesLoaded }} >
+        <PicturesMetadataContext.Provider value={{
+            JSONList, selectedPicture, setPicture, getNextPicture, getPreviousPicture, werePicturesLoaded, setPicturesLoaded,
+            selectedCollectionName, setCollection, getCollectionPictures, collatedPictures
+        }} >
             {props.children}
         </PicturesMetadataContext.Provider>
     )
