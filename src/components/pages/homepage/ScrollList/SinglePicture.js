@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SinglePicture(props) {
 
     const { uri, alt, _id, collection } = props.pictureMetaData;
+
+    const [showPicture, setShowPicture] = useState(true);
 
     console.log(uri);
     return (
@@ -11,8 +13,6 @@ function SinglePicture(props) {
         <li className={`${props.first ? "mb-3" : "my-3"}`}
             key={_id}
         >
-
-
             <Link to={props.goToPicture ? `/pic/${collection}/${_id}` : `/pic/${collection}`}>
                 <img src={uri} alt={alt} className={`pic 
             hover:brightness-150 transition-all duration-150

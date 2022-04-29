@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import convertNameToReadable from "../../../utils/convertNameToReadable";
 import { PicturesMetadataContext } from "../../context/PicturesMetadataContextProvider";
 import LoadingSpinner from "../../loadingSpinner/LoadingSpinner";
 
@@ -19,7 +21,7 @@ function PicturePage(props) {
     const [showLeftCursor, setShowLeftCursor] = useState(false);
     const [showRightCursor, setShowRightCursor] = useState(false)
 
-    const { selectedPicture, setPicture, getNextPicture, getPreviousPicture } = useContext(PicturesMetadataContext);
+    const { selectedPicture, setPicture, getNextPicture, getPreviousPicture, selectedCollectionName } = useContext(PicturesMetadataContext);
     let uriFromParam = `/assets/pictures/${params.collectionID}/${params.picID}`;
 
     // If the picture is not the "selected picture" in our state manager, then set it as a selected picture
@@ -89,7 +91,7 @@ function PicturePage(props) {
     return (
         selectedPicture ?
             <div className={`text-white min-h-[100%] min-w-[100%] noselect
-        pt-8  max-h-[100%]
+        pt-2  max-h-[100%]
         flex flex-col items-center 
         ${showLeftCursor ? "image-show-left-cursor" : ""}
         ${showRightCursor ? "image-show-right-cursor" : ""}
@@ -99,6 +101,11 @@ function PicturePage(props) {
                 onLoad={handleLoad}
                 onMouseMove={handleMouseMove}
             >
+                <Link to={`/pic/${selectedPicture.collection}`}>
+                    <div className=" text-white text-xl pb-2">
+                        {convertNameToReadable(selectedCollectionName)} Project
+                    </div>
+                </Link>
 
                 <img src={uriFromParam} alt={selectedPicture.alt}
                     className={`w-auto h-auto max-w-[100vw] max-h-[77vh]`}

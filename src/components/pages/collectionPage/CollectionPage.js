@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import convertNameToReadable from "../../../utils/convertNameToReadable";
 import { PicturesMetadataContext } from "../../context/PicturesMetadataContextProvider";
 import LoadingSpinner from "../../loadingSpinner/LoadingSpinner";
 import SinglePicture from "../homepage/ScrollList/SinglePicture";
@@ -57,26 +58,16 @@ function CollectionPage(props) {
         }
     }
 
-    function convertNameToReadable() {
-        let toReturn = "";
-        if (selectedCollectionName) {
-            toReturn = selectedCollectionName.replace("-", " ");
-            toReturn = toReturn.replace(toReturn[0], toReturn[0].toUpperCase());
-            toReturn = toReturn.replace(toReturn[toReturn.indexOf(" ") + 1], toReturn[toReturn.indexOf(" ") + 1].toUpperCase());
-        }
-        return toReturn;
-    }
-
     return (
         true ?
             <div className={`font-white min-w-full`}>
                 <div className="py-4 text-white text-3xl
                 sm:border-b-2 md:border-b-4 sm:border-slate-50">
-                    {convertNameToReadable()}
+                    {convertNameToReadable(selectedCollectionName)} Project
                 </div>
 
                 COLLECTION PAGE
-                <ul className="justify-items-center 
+                <ul className="justify-items-center mx-4
             columns-2 sm:columns-3 md:columns-4 lg:columns-5
             ">
                     {CreateListOfSinglePictures()}
