@@ -15,9 +15,7 @@ function Header(props) {
     }, [location, locationPath])
 
     return (
-        <div className=" 
-        bg-black min-w-full w-full 
-        ">
+        <div className=" bg-black min-w-full w-full ">
             <div className="sm:border-b-2 md:border-b-4 sm:border-slate-50 my-auto py-4">
                 <TopMenu />
             </div>

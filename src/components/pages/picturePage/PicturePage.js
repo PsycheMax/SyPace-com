@@ -112,7 +112,7 @@ function PicturePage(props) {
                     className={`w-auto h-auto max-w-[100vw] max-h-[77vh]`}
                     onError={() => { navigate("/") }}
                 />
-                <div className=" font-white text-white grow-0">
+                <div className=" text-white grow-0">
                     {/* {selectedPicture.collection} */}
                     {selectedPicture.title}
 
