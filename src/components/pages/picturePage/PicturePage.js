@@ -104,7 +104,7 @@ function PicturePage(props) {
             >
                 <Link to={`/pic/${selectedPicture.collection}`}>
                     <div className=" text-white text-xl pb-2">
-                        {convertNameToReadable(selectedCollectionName)}
+                        {convertNameToReadable(selectedPicture.decorativeCollectionName)}
                     </div>
                 </Link>
 

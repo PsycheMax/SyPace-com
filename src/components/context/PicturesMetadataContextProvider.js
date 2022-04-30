@@ -7,7 +7,11 @@ export const PicturesMetadataContext = React.createContext({
         uri: "",
         title: "",
         alt: "",
-        _id: ""
+        _id: "",
+        collection: "",
+        decorativeCollectionName: "",
+        width: "",
+        height: ""
     }],
     selectedPicture: {
         JSONListArrayPosition: "",
@@ -16,6 +20,7 @@ export const PicturesMetadataContext = React.createContext({
         alt: "",
         _id: "",
         collection: "",
+        decorativeCollectionName: "",
         width: "",
         height: ""
     },
@@ -26,13 +31,14 @@ export const PicturesMetadataContext = React.createContext({
         alt: "",
         _id: "",
         collection: "",
+        decorativeCollectionName: "",
         width: "",
         height: ""
     }],
     selectedCollectionName: "",
     setCollection: (collectionName) => { },
     getCollectionPictures: () => { },
-
+    getCollectionDecorativeName: () => { },
     setPicture: (_id) => { },
     getNextPicture: () => { },
     getPreviousPicture: () => { },
@@ -109,6 +115,17 @@ function PictureMetadataContextProvider(props) {
         }
     }
 
+    function getCollectionDecorativeName() {
+        if (selectedCollectionName && selectedCollectionName.length > 0) {
+            for (let index = 0; index < JSONList.length; index++) {
+                const pic = JSONList[index];
+                if (pic.collection === selectedCollectionName) {
+                    return pic.decorativeCollectionName;
+                }
+            }
+        }
+    }
+
     function setPicturesLoaded() {
         setWerePicturesLoaded(true);
     }
@@ -116,7 +133,7 @@ function PictureMetadataContextProvider(props) {
     return (
         <PicturesMetadataContext.Provider value={{
             JSONList, selectedPicture, setPicture, getNextPicture, getPreviousPicture, werePicturesLoaded, setPicturesLoaded,
-            selectedCollectionName, setCollection, getCollectionPictures, collatedPictures
+            selectedCollectionName, setCollection, getCollectionPictures, collatedPictures, getCollectionDecorativeName
         }} >
             {props.children}
         </PicturesMetadataContext.Provider>

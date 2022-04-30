@@ -8,7 +8,7 @@ import SinglePicture from "../ScrollList/SinglePicture";
 function CollectionPage(props) {
     let params = useParams()
 
-    let { selectedCollectionName, collatedPictures, getCollectionPictures, setCollection } = useContext(PicturesMetadataContext);
+    let { selectedCollectionName, collatedPictures, getCollectionPictures, setCollection, getCollectionDecorativeName } = useContext(PicturesMetadataContext);
 
     const [windowDimensions, setWindowDimensions] = useState({
         windowWidth: window.innerWidth,
@@ -61,7 +61,7 @@ function CollectionPage(props) {
             <div className={`font-white min-w-full`}>
                 <div className="py-4 mb-4 text-white text-3xl
                 sm:border-b-2 md:border-b-4 sm:border-slate-50">
-                    {convertNameToReadable(selectedCollectionName)}
+                    {convertNameToReadable(getCollectionDecorativeName())}
                 </div>
 
 

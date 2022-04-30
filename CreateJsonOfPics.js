@@ -31,12 +31,13 @@ async function* getFiles(dir) {
 
 ; (async () => {
     for await (const foundFileCompletePath of getFiles(publicAssetsPicturesFolder)) {
-
+        //TODO fix this to make it work with numbered folders
         const folderSeparator = "/";
         let indexOfFilenameSeparator = foundFileCompletePath.lastIndexOf(folderSeparator);
         const filename = foundFileCompletePath.substring(indexOfFilenameSeparator + 1, foundFileCompletePath.length);
         let indexOfFolderSeparator = foundFileCompletePath.lastIndexOf(folderSeparator, indexOfFilenameSeparator - 1);
         const folderName = foundFileCompletePath.substring(indexOfFolderSeparator + 1, indexOfFilenameSeparator);
+        let decorativeFolderName = folderName.replace(/[0-9]/g, '');
         try {
             new ExifImage(foundFileCompletePath, function (error, exifData) {
                 if (error) {
@@ -48,6 +49,7 @@ async function* getFiles(dir) {
                         "alt": `${exifData.image.ImageDescription} by ${exifData.image.Artist}`,
                         "_id": `${filename}`,
                         "collection": `${folderName}`,
+                        "decorativeCollectionName": `${decorativeFolderName}`,
                         "width": imageSize(foundFileCompletePath).width,
                         "height": imageSize(foundFileCompletePath).height
                     };
