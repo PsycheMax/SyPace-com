@@ -4,7 +4,7 @@ import MiniLoadingSpinner from "../../loadingSpinner/MiniLoadingSpinner";
 
 function SinglePicture(props) {
 
-    const { uri, alt, _id, collection, width, height } = props.pictureMetaData;
+    const { thumb_uri, alt, _id, collection, width, height } = props.pictureMetaData;
 
     const [showPicture, setShowPicture] = useState(false);
 
@@ -43,7 +43,7 @@ function SinglePicture(props) {
                 </div>
             </div>
             <Link to={props.goToPicture ? `/pic/${collection}/${_id}` : `/pic/${collection}`}>
-                <img src={uri} alt={alt}
+                <img src={thumb_uri} alt={alt}
                     onLoad={() => { setShowPicture(true) }}
                     key={_id}
 

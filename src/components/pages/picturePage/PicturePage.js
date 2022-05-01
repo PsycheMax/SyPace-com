@@ -17,7 +17,7 @@ function PicturePage(props) {
         windowHeigth: window.innerHeight
     })
 
-    const [showLoadingCursor, setShowLoadingCursor] = useState(false);
+    const [showLoadingCursor, setShowLoadingCursor] = useState(true);
     const [showLeftCursor, setShowLeftCursor] = useState(false);
     const [showRightCursor, setShowRightCursor] = useState(false)
 
@@ -78,14 +78,18 @@ function PicturePage(props) {
     }
 
     function handleMouseMove(event) {
-        let xPosition = event.clientX;
-        if (xPosition <= (windowDimensions.windowWidth / 2)) {
-            setShowLeftCursor(true);
-            setShowRightCursor(false);
-        }
-        if (xPosition >= (windowDimensions.windowWidth / 2)) {
-            setShowLeftCursor(false);
-            setShowRightCursor(true);
+        if (!showLoadingCursor) {
+
+
+            let xPosition = event.clientX;
+            if (xPosition <= (windowDimensions.windowWidth / 2)) {
+                setShowLeftCursor(true);
+                setShowRightCursor(false);
+            }
+            if (xPosition >= (windowDimensions.windowWidth / 2)) {
+                setShowLeftCursor(false);
+                setShowRightCursor(true);
+            }
         }
     }
 
@@ -98,26 +102,27 @@ function PicturePage(props) {
         ${showRightCursor ? "image-show-right-cursor" : ""}
         ${showLoadingCursor ? "image-show-loading-cursor" : ""}
         `}
-                onMouseDown={handleClick}
-                onLoad={handleLoad}
-                onMouseMove={handleMouseMove}
             >
                 <Link to={`/pic/${selectedPicture.collection}`}>
                     <div className=" text-white text-xl pb-2">
                         {convertNameToReadable(selectedPicture.decorativeCollectionName)}
                     </div>
                 </Link>
+                <div
+                    onClick={handleClick}
+                    onMouseMove={handleMouseMove}
+                    className="min-w-[100%] min-h-[100%] grid place-items-center">
+                    <img src={uriFromParam} alt={selectedPicture.alt}
+                        className={`w-auto h-auto max-w-[100vw] max-h-[77vh]`}
+                        onError={() => { navigate("/") }}
+                        onLoad={handleLoad}
+                    />
+                    <div className=" text-white grow-0">
+                        {/* {selectedPicture.collection} */}
+                        {selectedPicture.title}
 
-                <img src={uriFromParam} alt={selectedPicture.alt}
-                    className={`w-auto h-auto max-w-[100vw] max-h-[77vh]`}
-                    onError={() => { navigate("/") }}
-                />
-                <div className=" text-white grow-0">
-                    {/* {selectedPicture.collection} */}
-                    {selectedPicture.title}
-
+                    </div>
                 </div>
-
             </div> :
             <LoadingSpinner />
     )
