@@ -19,13 +19,13 @@ console.log(publicAssetsPicturesFolder)
 
 let jsonToWrite = [];
 
-
 async function createThumbnail(source, destination) {
     jimp.read(source, (err, result) => {
         if (err) throw err;
         result
-            .resize(600, jimp.AUTO)
+            .resize(350, jimp.AUTO)
             .quality(60)
+            .bu
             .write(destination, (err, value) => {
                 if (err) throw err;
             })
@@ -46,7 +46,7 @@ async function* getFiles(dir) {
 }
 
 ; (async () => {
-    console.log("Generating the thumbnails, this may take up to 5 minutes depending on your machine");
+    console.log("\n\nGenerating the thumbnails, this may take up to 5 minutes depending on your machine\n\n");
     for await (const foundFileCompletePath of getFiles(publicAssetsPicturesFolder)) {
         const folderSeparator = "/";
         let indexOfFilenameSeparator = foundFileCompletePath.lastIndexOf(folderSeparator);
