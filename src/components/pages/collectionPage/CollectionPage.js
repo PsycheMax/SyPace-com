@@ -60,7 +60,7 @@ function CollectionPage(props) {
         let toReturn = getCollectionDescription(getCollectionDecorativeName());
         if (toReturn && toReturn.length > 0) {
             return (
-                <div className="py-4 mb-4 text-white text-xl md:px-[10%]
+                <div className="pb-4 mb-4 text-white text-xl md:px-[10%]
                     sm:border-b-2 md:border-b-4 sm:border-slate-50">
                     {toReturn}
                 </div>
