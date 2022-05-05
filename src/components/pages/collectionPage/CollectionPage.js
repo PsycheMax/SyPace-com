@@ -64,7 +64,6 @@ function CollectionPage(props) {
                     sm:border-b-2 md:border-b-4 sm:border-slate-50">
                     {toReturn}
                 </div>
-
             );
         } else {
             return null;
