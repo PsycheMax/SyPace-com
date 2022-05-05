@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import JSONList from '../pages/ScrollList/ListOfPics.json';
+import collectionDescriptionJSON from '../pages/ScrollList/ProjectDescriptions.json';
 
 export const PicturesMetadataContext = React.createContext({
     JSONList: [{
@@ -35,6 +36,11 @@ export const PicturesMetadataContext = React.createContext({
         width: "",
         height: ""
     }],
+    collectionDescriptionJSON: [{
+        project: "",
+        description: ""
+    }],
+    getCollectionDescription: (collectionName) => { },
     selectedCollectionName: "",
     setCollection: (collectionName) => { },
     getCollectionPictures: () => { },
@@ -130,10 +136,21 @@ function PictureMetadataContextProvider(props) {
         setWerePicturesLoaded(true);
     }
 
+    function getCollectionDescription(collectionName) {
+        let toReturn = null;
+        collectionDescriptionJSON.forEach(element => {
+            if (element.project === collectionName) {
+                toReturn = element.description
+            }
+        });
+        return toReturn;
+    }
+
     return (
         <PicturesMetadataContext.Provider value={{
             JSONList, selectedPicture, setPicture, getNextPicture, getPreviousPicture, werePicturesLoaded, setPicturesLoaded,
-            selectedCollectionName, setCollection, getCollectionPictures, collatedPictures, getCollectionDecorativeName
+            selectedCollectionName, setCollection, getCollectionPictures, collatedPictures, getCollectionDecorativeName,
+            getCollectionDescription, collectionDescriptionJSON
         }} >
             {props.children}
         </PicturesMetadataContext.Provider>
