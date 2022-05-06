@@ -3,7 +3,7 @@
 This is the bespoke solution I have created for a photography portfolio website. You can find it here, http://SyPace.com
 
 
-## "Backend-ish solutions"
+## Backend-ish solutions
 
 In the project directory, you can run:
 
